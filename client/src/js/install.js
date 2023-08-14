@@ -7,29 +7,22 @@ window.addEventListener("beforeinstallprompt", (event) => {
   event.preventDefault();
   deferredPrompt = event;
   // Remove the hidden attribute to show the button
-  butInstall.removeAttribute("hidden");
+  butInstall.classList.toggle("hidden", false);
 });
 
 butInstall.addEventListener("click", async () => {
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-
-    // Wait for the user to accept or dismiss the prompt
-    const { outcome } = await deferredPrompt.userChoice;
-    if (outcome === "accepted") {
-      console.log("User accepted the install prompt");
-    } else {
-      console.log("User dismissed the install prompt");
-    }
-
-    // Reset the prompt
-    deferredPrompt = null;
-
-    // Hide the button
-    butInstall.setAttribute("hidden", true);
+  // Show the install prompt
+  const promptEvent = window.deferredPrompt;
+  if (!promptEvent) {
+    return;
   }
+  promptEvent.prompt();
+  window.deferredPrompt = null;
+  // Hide the install button
+  butInstall.classList.toggle("hidden", true);
 });
 
 window.addEventListener("appinstalled", (event) => {
-  console.log("App installed", event);
+  // Clear the deferredPrompt so it can be garbage collected
+  window.deferredPrompt = null;
 });
