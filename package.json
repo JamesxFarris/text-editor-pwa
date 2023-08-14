@@ -2,6 +2,9 @@
   "name": "JATE",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "14.15.4"
+  },
   "main": "server.js",
   "scripts": {
     "start:dev": "concurrently \"cd server && npm run server\" \"cd client && npm run dev\"",
