@@ -29,7 +29,9 @@ warmStrategyCache({
 registerRoute(({ request }) => request.mode === "navigate", pageCache);
 
 registerRoute(
+  // Cache CSS files.
   ({ request }) => ["style", "script", "worker"].includes(request.destination),
+  // Use cache but update in the background.
   new StaleWhileRevalidate({
     cacheName: "asset-cache",
     plugins: [

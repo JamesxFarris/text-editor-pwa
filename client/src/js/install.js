@@ -1,11 +1,8 @@
-let deferredPrompt;
-
 const butInstall = document.getElementById("buttonInstall");
 
 // Logic for installing the PWA
 window.addEventListener("beforeinstallprompt", (event) => {
-  event.preventDefault();
-  deferredPrompt = event;
+  window.deferredPrompt = event;
   // Remove the hidden attribute to show the button
   butInstall.classList.toggle("hidden", false);
 });
