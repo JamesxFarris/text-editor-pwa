@@ -18,9 +18,16 @@ export const putDb = async (content) => {
   const db = await openDB("jate", 1);
   const tx = db.transaction("jate", "readwrite");
   const store = tx.objectStore("jate");
-  const request = await store.put(content);
-  const result = await request;
-  console.log("PUT result", result);
+
+  try {
+    // Remove the id property from the content object
+    const { id, ...contentWithoutId } = content;
+    const request = await store.put(contentWithoutId);
+    const result = await request;
+    console.log("PUT result", result);
+  } catch (error) {
+    console.error("Error putting data into IndexedDB:", error);
+  }
 };
 
 // GET all from database
