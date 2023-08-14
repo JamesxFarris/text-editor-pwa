@@ -12,7 +12,7 @@ window.addEventListener("beforeinstallprompt", (event) => {
 
 butInstall.addEventListener("click", async () => {
   if (deferredPrompt) {
-    defferedPrompt.prompt();
+    deferredPrompt.prompt();
 
     // Wait for the user to accept or dismiss the prompt
     const { outcome } = await deferredPrompt.userChoice;
