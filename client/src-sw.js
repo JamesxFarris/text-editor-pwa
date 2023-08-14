@@ -29,22 +29,12 @@ warmStrategyCache({
 registerRoute(({ request }) => request.mode === "navigate", pageCache);
 
 registerRoute(
-  ({ request }) =>
-    // request is for a style sheet, script, or image
-    request.destination === "style" ||
-    request.destination === "script" ||
-    request.destination === "image",
-  // Use cache but update in the background.
+  ({ request }) => ["style", "script", "worker"].includes(request.destination),
   new StaleWhileRevalidate({
     cacheName: "asset-cache",
     plugins: [
-      // Ensure that only requests that result in a 200 status are cached
       new CacheableResponsePlugin({
         statuses: [0, 200],
-      }),
-      // Don't cache more than 50 items, and expire them after 7 days
-      new ExpirationPlugin({
-        maxAgeSeconds: 7 * 24 * 60 * 60,
       }),
     ],
   })

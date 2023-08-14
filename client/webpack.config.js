@@ -30,12 +30,14 @@ module.exports = () => {
           {
             src: path.resolve("src/images/logo.png"),
             sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join("assets", "icons"),
           },
         ],
       }),
       // Service Worker
       new InjectManifest({
         swSrc: "./src-sw.js",
+        swDest: "src-sw.js",
       }),
     ],
 
