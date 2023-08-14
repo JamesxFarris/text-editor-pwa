@@ -9,6 +9,10 @@
 ![Webpack](https://img.shields.io/badge/Webpack-8DD6F9?style=for-the-badge&logo=Webpack&logoColor=white)
 ![Express](https://img.shields.io/badge/Express%20js-000000?style=for-the-badge&logo=express&logoColor=white)
 
+https://github.com/JamesxFarris/text-editor-pwa/assets/51385562/7cdc269f-bff8-4d91-a5c2-895f269b2fc9
+
+[Link to the above video](https://github.com/JamesxFarris/text-editor-pwa/issues/1)
+
 </div>
 <hr>
 
